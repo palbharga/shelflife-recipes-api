@@ -1,0 +1,12 @@
+# Render.com config: lets Render set this service up automatically.
+services:
+  - type: web
+    name: shelflife-recipes-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
